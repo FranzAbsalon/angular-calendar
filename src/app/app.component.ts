@@ -1,10 +1,20 @@
 // Angular Core
-import { Component, signal, ViewChild, AfterViewInit, ChangeDetectorRef, inject } from '@angular/core';
+import {
+  Component,
+  signal,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef,
+  inject,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 // FullCalendar
-import { FullCalendarModule, FullCalendarComponent } from '@fullcalendar/angular';
+import {
+  FullCalendarModule,
+  FullCalendarComponent,
+} from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -68,7 +78,6 @@ import {
     }),
   ],
 })
-
 export class AppComponent implements AfterViewInit {
   title = 'my-angular-app';
 
@@ -77,7 +86,6 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
   calendarTitle: string = '';
   selectedView: string = 'timeGridWeek';
-  
 
   calendarOptions: CalendarOptions = {
     initialView: this.selectedView,
@@ -86,63 +94,113 @@ export class AppComponent implements AfterViewInit {
     selectable: true,
     editable: true,
     firstDay: 1,
-    slotMinTime: "00:00:00",
-    slotMaxTime: "24:00:00",
+    slotMinTime: '00:00:00',
+    slotMaxTime: '24:00:00',
     slotLabelFormat: {
       hour: '2-digit',
       minute: '2-digit',
-      hour12: true, 
+      hour12: true,
     },
     allDayText: '',
     events: [
-      { title: 'Client Call', start: '2025-02-03T09:00:00', end: '2025-02-03T09:30:00', color: '#A8D5BA' }, 
-      { title: 'Team Standup', start: '2025-02-03T11:00:00', end: '2025-02-03T11:30:00', color: '#B5D8F6' }, 
-      { title: 'Project Review', start: '2025-02-04T10:00:00', end: '2025-02-04T10:30:00', color: '#FAD2E1' }, 
-      { title: 'Lunch Break', start: '2025-02-04T12:30:00', end: '2025-02-04T13:00:00', color: '#FFE5B4' }, 
-      { title: 'Workshop', start: '2025-02-05T14:00:00', end: '2025-02-05T15:00:00', color: '#C3B1E1' },
-      { title: 'Team Brainstorming', start: '2025-02-05T16:00:00', end: '2025-02-05T17:00:00', color: '#F7D488' },
-      { title: 'Scrum Meeting', start: '2025-02-06T09:30:00', end: '2025-02-06T10:00:00', color: '#FFCCCB' }, 
-      { title: 'Tech Sync', start: '2025-02-06T13:00:00', end: '2025-02-06T13:30:00', color: '#B0E0E6' }, 
-      { title: 'Company Update', start: '2025-02-07T10:30:00', end: '2025-02-07T11:00:00', color: '#D3ECA7' }, 
-      { title: 'End of Week Review', start: '2025-02-07T15:30:00', end: '2025-02-07T16:00:00', color: '#FDCEDF' } 
-    ],    
+      {
+        title: 'Client Call',
+        start: '2025-02-03T09:00:00',
+        end: '2025-02-03T09:30:00',
+        color: '#A8D5BA',
+      },
+      {
+        title: 'Team Standup',
+        start: '2025-02-03T11:00:00',
+        end: '2025-02-03T11:30:00',
+        color: '#B5D8F6',
+      },
+      {
+        title: 'Project Review',
+        start: '2025-02-04T10:00:00',
+        end: '2025-02-04T10:30:00',
+        color: '#FAD2E1',
+      },
+      {
+        title: 'Lunch Break',
+        start: '2025-02-04T12:30:00',
+        end: '2025-02-04T13:00:00',
+        color: '#FFE5B4',
+      },
+      {
+        title: 'Workshop',
+        start: '2025-02-05T14:00:00',
+        end: '2025-02-05T15:00:00',
+        color: '#C3B1E1',
+      },
+      {
+        title: 'Team Brainstorming',
+        start: '2025-02-05T16:00:00',
+        end: '2025-02-05T17:00:00',
+        color: '#F7D488',
+      },
+      {
+        title: 'Scrum Meeting',
+        start: '2025-02-06T09:30:00',
+        end: '2025-02-06T10:00:00',
+        color: '#FFCCCB',
+      },
+      {
+        title: 'Tech Sync',
+        start: '2025-02-06T13:00:00',
+        end: '2025-02-06T13:30:00',
+        color: '#B0E0E6',
+      },
+      {
+        title: 'Company Update',
+        start: '2025-02-07T10:30:00',
+        end: '2025-02-07T11:00:00',
+        color: '#D3ECA7',
+      },
+      {
+        title: 'End of Week Review',
+        start: '2025-02-07T15:30:00',
+        end: '2025-02-07T16:00:00',
+        color: '#FDCEDF',
+      },
+    ],
     eventTextColor: '#000000',
     eventClick: this.handleEventClick.bind(this),
-    datesSet: this.updateTitle.bind(this)
+    datesSet: this.updateTitle.bind(this),
   };
 
   ngAfterViewInit() {
-    this.updateTitle(); // Set initial title after view is ready
+    this.updateTitle();
     setTimeout(() => {
-      this.changeDetectorRef.detectChanges(); // Force re-render
+      this.changeDetectorRef.detectChanges();
     }, 100);
     setTimeout(() => {
-      window.dispatchEvent(new Event('resize')); // Simulate a resize event
+      window.dispatchEvent(new Event('resize'));
     }, 200);
     setTimeout(() => {
       if (this.calendarComponent) {
-        this.calendarComponent.getApi().updateSize(); // Force FullCalendar to update layout
+        this.calendarComponent.getApi().updateSize();
       }
     }, 200);
   }
 
   updateTitle() {
     const calendarApi = this.calendarComponent.getApi();
-    this.calendarTitle = calendarApi.view.title; // Fetch and store the title
+    this.calendarTitle = calendarApi.view.title;
   }
 
   private _snackBar = inject(MatSnackBar);
 
   handleEventClick(info: any) {
-    const start = new Date(info.event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+    const start = new Date(info.event.start).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
     this._snackBar.open(`${info.event.title} (Time: ${start})`, '', {
       duration: 5000,
     });
   }
-
-  // handleEventClick(info: any) {
-  //   alert('Event: ' + info.event.title);
-  // }
 
   goToNext() {
     const calendarApi = this.calendarComponent.getApi();
@@ -163,7 +221,7 @@ export class AppComponent implements AfterViewInit {
     const calendarApi = this.calendarComponent.getApi();
     calendarApi.addEvent({
       title: 'New Event',
-      start: new Date()
+      start: new Date(),
     });
   }
 
@@ -178,7 +236,7 @@ export class AppComponent implements AfterViewInit {
     const labels: { [key: string]: string } = {
       dayGridMonth: 'Month',
       timeGridWeek: 'Week',
-      timeGridDay: 'Day'
+      timeGridDay: 'Day',
     };
     return labels[view] || 'View';
   }

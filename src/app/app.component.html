@@ -155,181 +155,187 @@
   .view-dropdown {
     width: 120px;
   }
-  
 </style>
 
 <main class="main">
   <div class="py-3 px-6">
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-
       <mat-tab label="Calendar">
         <div class="h-[90vh]">
-            <div class="flex justify-start items-start text-2xl py-3 h-15 gap-1 sticky top-0 bg-white z-10 shadow-md">
+          <div
+            class="flex justify-start items-start text-2xl py-3 h-15 gap-1 sticky top-0 bg-white z-10 shadow-md"
+          >
             <div class="example-button-row border-r-2 border-gray-300">
               <div class="example-flex-container">
-              <div class="example-button-container">
-                <!-- New Job Button -->
-                <button
-                mat-flat-button
-                class="primary-custom-button"
-                style="background-color: rgb(0, 68, 255); border-radius: 5px; height: 2rem;"
-                >
-                <div class="flex items-center justify-center gap-1">
-                  New Job
-                  <ng-icon
-                  name="heroPlusCircleSolid"
-                  color="white"
-                  size="20"
-                  ></ng-icon>
-                </div>
-                </button>
-
-                <!-- Search Input Field -->
-                <div ngpSearchField>
-                <div class="search-container">
-                  <ng-icon name="heroMagnifyingGlass" />
-                  <input
-                  [(ngModel)]="query"
-                  ngpInput
-                  type="search"
-                  placeholder="Search"
-                  />
+                <div class="example-button-container">
+                  <!-- New Job Button -->
                   <button
-                  ngpSearchFieldClear
-                  ngpButton
-                  aria-label="Clear search"
+                    mat-flat-button
+                    class="primary-custom-button"
+                    style="
+                      background-color: rgb(0, 68, 255);
+                      border-radius: 5px;
+                      height: 2rem;
+                    "
                   >
-                  Clear
+                    <div class="flex items-center justify-center gap-1">
+                      New Job
+                      <ng-icon
+                        name="heroPlusCircleSolid"
+                        color="white"
+                        size="20"
+                      ></ng-icon>
+                    </div>
                   </button>
-                </div>
-                </div>
 
-                <!-- Person Button -->
-                <button
-                mat-button
-                class="primary-custom-button"
-                style="border-radius: 5px; height: 2rem"
-                >
-                <div
-                  class="flex items-center justify-center gap-1 text-gray-800"
-                >
-                  <ng-icon
-                  name="heroUserCircle"
-                  color="text-gray-800"
-                  size="20"
-                  ></ng-icon>
-                  Person
-                </div>
-                </button>
+                  <!-- Search Input Field -->
+                  <div ngpSearchField>
+                    <div class="search-container">
+                      <ng-icon name="heroMagnifyingGlass" />
+                      <input
+                        [(ngModel)]="query"
+                        ngpInput
+                        type="search"
+                        placeholder="Search"
+                      />
+                      <button
+                        ngpSearchFieldClear
+                        ngpButton
+                        aria-label="Clear search"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                  </div>
 
-                <!-- Filter Dropdown -->
-                <button
-                style="border-radius: 5px; height: 2rem"
-                mat-button
-                [matMenuTriggerFor]="menu"
-                >
-                <div
-                  class="flex items-center justify-center gap-2 text-gray-800"
-                >
-                  <ng-icon
-                  name="heroFunnel"
-                  color="text-gray-800"
-                  size="18"
-                  ></ng-icon>
-                  Filter
-                  <ng-icon
-                  name="heroChevronDownMini"
-                  color="text-gray-800"
-                  size="20"
-                  ></ng-icon>
+                  <!-- Person Button -->
+                  <button
+                    mat-button
+                    class="primary-custom-button"
+                    style="border-radius: 5px; height: 2rem"
+                  >
+                    <div
+                      class="flex items-center justify-center gap-1 text-gray-800"
+                    >
+                      <ng-icon
+                        name="heroUserCircle"
+                        color="text-gray-800"
+                        size="20"
+                      ></ng-icon>
+                      Person
+                    </div>
+                  </button>
+
+                  <!-- Filter Dropdown -->
+                  <button
+                    style="border-radius: 5px; height: 2rem"
+                    mat-button
+                    [matMenuTriggerFor]="menu"
+                  >
+                    <div
+                      class="flex items-center justify-center gap-2 text-gray-800"
+                    >
+                      <ng-icon
+                        name="heroFunnel"
+                        color="text-gray-800"
+                        size="18"
+                      ></ng-icon>
+                      Filter
+                      <ng-icon
+                        name="heroChevronDownMini"
+                        color="text-gray-800"
+                        size="20"
+                      ></ng-icon>
+                    </div>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Assigned</button>
+                    <button mat-menu-item>Scheduled Meeting</button>
+                  </mat-menu>
                 </div>
-                </button>
-                <mat-menu #menu="matMenu">
-                <button mat-menu-item>Assigned</button>
-                <button mat-menu-item>Scheduled Meeting</button>
-                </mat-menu>
-              </div>
               </div>
             </div>
 
             <div class="example-button-row">
               <div class="example-flex-container">
-              <div class="example-button-container">
-                <!-- Today Button -->
-                <button
-                mat-stroked-button
-                class="primary-custom-button"
-                style="border-radius: 5px; height: 2rem"
-                (click)="goToToday()"
-                >
-                <p class="text-gray-800">Today</p>
-                </button>
-                <button
-                mat-icon-button
-                aria-label="Previous Button"
-                class="iconButtons"
-                (click)="goToPrev()"
-                >
-                <ng-icon
-                  name="heroChevronLeft"
-                  color="text-gray-800"
-                ></ng-icon>
-                </button>
-                <button
-                mat-icon-button
-                aria-label="Next Button"
-                class="iconButtons"
-                (click)="goToNext()"
-                >
-                <ng-icon
-                  name="heroChevronRight"
-                  color="text-gray-800"
-                ></ng-icon>
-                </button>
+                <div class="example-button-container">
+                  <!-- Today Button -->
+                  <button
+                    mat-stroked-button
+                    class="primary-custom-button"
+                    style="border-radius: 5px; height: 2rem"
+                    (click)="goToToday()"
+                  >
+                    <p class="text-gray-800">Today</p>
+                  </button>
+                  <button
+                    mat-icon-button
+                    aria-label="Previous Button"
+                    class="iconButtons"
+                    (click)="goToPrev()"
+                  >
+                    <ng-icon
+                      name="heroChevronLeft"
+                      color="text-gray-800"
+                    ></ng-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    aria-label="Next Button"
+                    class="iconButtons"
+                    (click)="goToNext()"
+                  >
+                    <ng-icon
+                      name="heroChevronRight"
+                      color="text-gray-800"
+                    ></ng-icon>
+                  </button>
 
-                <div class="px-2">
-                <h5 class="text-[1rem]">{{ calendarTitle }}</h5>
-                </div>
+                  <div class="px-2">
+                    <h5 class="text-[1rem]">{{ calendarTitle }}</h5>
+                  </div>
 
-                <button
-                style="border-radius: 5px; height: 2rem; padding: 0 10px;"
-                mat-stroked-button
-                [matMenuTriggerFor]="viewMenu"
-                >
-                <div class="flex items-center justify-center gap-2 text-gray-800">
-                  {{ getViewLabel(selectedView) }}
-                  <ng-icon
-                  name="heroChevronDownMini"
-                  color="text-gray-800"
-                  size="20"
-                  ></ng-icon>
+                  <button
+                    style="border-radius: 5px; height: 2rem; padding: 0 10px"
+                    mat-stroked-button
+                    [matMenuTriggerFor]="viewMenu"
+                  >
+                    <div
+                      class="flex items-center justify-center gap-2 text-gray-800"
+                    >
+                      {{ getViewLabel(selectedView) }}
+                      <ng-icon
+                        name="heroChevronDownMini"
+                        color="text-gray-800"
+                        size="20"
+                      ></ng-icon>
+                    </div>
+                  </button>
+
+                  <mat-menu #viewMenu="matMenu">
+                    <button mat-menu-item (click)="changeView('dayGridMonth')">
+                      Month
+                    </button>
+                    <button mat-menu-item (click)="changeView('timeGridWeek')">
+                      Week
+                    </button>
+                    <button mat-menu-item (click)="changeView('timeGridDay')">
+                      Day
+                    </button>
+                  </mat-menu>
                 </div>
-                </button>
-          
-                <mat-menu #viewMenu="matMenu">
-                <button mat-menu-item (click)="changeView('dayGridMonth')">
-                  Month
-                </button>
-                <button mat-menu-item (click)="changeView('timeGridWeek')">
-                  Week
-                </button>
-                <button mat-menu-item (click)="changeView('timeGridDay')">
-                  Day
-                </button>
-                </mat-menu>
-              </div>
               </div>
             </div>
-            </div>
-
-          <div class="pt-3 h-[90vh]">
-            <full-calendar #calendar [options]="calendarOptions"></full-calendar>
           </div>
 
+          <div class="pt-3 h-[90vh]">
+            <full-calendar
+              #calendar
+              [options]="calendarOptions"
+            ></full-calendar>
+          </div>
         </div>
       </mat-tab>
-
-     
     </mat-tab-group>
   </div>
 </main>
